@@ -1,0 +1,30 @@
+---
+title: "Los Angeles Education"
+execute:
+    echo: false
+---
+
+```{r}
+#|message=false
+library(tidycensus)
+library(tidyverse)
+library(sf)
+```
+
+```{r}
+edu_data <- get_acs(
+  geography = "tract",
+  variables = c(
+    total = "B15003_001",       # Total population 25+ years
+    bach = "B15003_022",        # Bachelor's degree
+    masters = "B15003_023",     # Master's degree
+    prof = "B15003_024",        # Professional school degree
+    doctorate = "B15003_025"    # Doctorate degree
+  ),
+  county = "Los Angeles",
+  state = "CA",
+  year = 2023,
+  geometry = TRUE,
+  output = "wide"
+)
+```
