@@ -4,11 +4,13 @@ execute:
     echo: false
 ---
 
-```{r}
-#|message=false
+```{r, message=FALSE, warning=FALSE}
 library(tidycensus)
 library(tidyverse)
 library(sf)
+library(leaflet)
+library(dplyr)
+library(scales)
 ```
 
 ```{r}
@@ -28,3 +30,55 @@ edu_data <- get_acs(
   output = "wide"
 )
 ```
+
+```{r}
+# Calculate percentage of population with a bachelor's degree
+edu_data <- edu_data %>%
+  mutate(bach_percent = 100 * bachE / totalE)
+
+# Define a color palette
+pal <- colorNumeric(
+  palette = "YlGnBu",
+  domain = edu_data$bach_percent,
+  na.color = "transparent"
+)
+
+# Create interactive map
+leaflet(data = edu_data) %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  addPolygons(
+    fillColor = ~pal(bach_percent),
+    weight = 0.5,
+    opacity = 1,
+    color = "white",
+    dashArray = "3",
+    fillOpacity = 0.7,
+    highlightOptions = highlightOptions(
+      weight = 2,
+      color = "#666",
+      dashArray = "",
+      fillOpacity = 0.9,
+      bringToFront = TRUE
+    ),
+    label = ~paste0(
+      NAME, "<br>",
+      "Bachelor's Degree: ", percent(bach_percent / 100, accuracy = 0.1)
+    ),
+    labelOptions = labelOptions(
+      style = list("font-weight" = "normal", padding = "3px 8px"),
+      textsize = "13px",
+      direction = "auto"
+    )
+  ) %>%
+  addLegend(
+    pal = pal,
+    values = ~bach_percent,
+    opacity = 0.7,
+    title = "Percent with Bachelor's Degree",
+    position = "bottomright",
+    labFormat = labelFormat(suffix = "%", digits = 1)
+  )
+
+```
+
+The interactive map visualizes the percentage of residents aged 25 and over with a bachelor's degree across census tracts in Los Angeles County. A clear spatial pattern emerges: higher rates of educational attainment tend to cluster in tracts located on the west side of the county, particularly near coastal and affluent neighborhoods, while lower percentages are more prevalent in central and southeastern areas. This geographic disparity reflects long-standing social and economic inequalities that shape access to higher education. Hovering over individual tracts reveals precise percentages, offering a detailed look at localized educational profiles. The map serves as a valuable tool for identifying communities with lower bachelor's degree attainment, potentially informing targeted educational investment and outreach efforts.

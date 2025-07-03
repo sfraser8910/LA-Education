@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This site was created as a part of Kane’s Summer Data Science Bootcamp"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Los Angeles Education",
+    "section": "",
+    "text": "Getting data from the 2019-2023 5-year ACS\n\n\n\n\nWarning: sf layer has inconsistent datum (+proj=longlat +datum=NAD83 +no_defs).\nNeed '+proj=longlat +datum=WGS84'"
+  }
+]
