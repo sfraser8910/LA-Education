@@ -4,13 +4,13 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "This site was created as a part of Kane’s Summer Data Science Bootcamp"
+    "text": "This site was created as a part of Kane’s Summer Data Science Bootcamp. I used ChatGPT to help create this website."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Los Angeles Education",
     "section": "",
-    "text": "Getting data from the 2019-2023 5-year ACS\n\n\n\n\nWarning: sf layer has inconsistent datum (+proj=longlat +datum=NAD83 +no_defs).\nNeed '+proj=longlat +datum=WGS84'"
+    "text": "Getting data from the 2019-2023 5-year ACS\n\n\n\n\n\n\n\n\nThe interactive map visualizes the percentage of residents aged 25 and over with a bachelor’s degree across census tracts in Los Angeles County. A clear spatial pattern emerges: higher rates of educational attainment tend to cluster in tracts located on the west side of the county, particularly near coastal and affluent neighborhoods, while lower percentages are more prevalent in central and southeastern areas. This geographic disparity reflects long-standing social and economic inequalities that shape access to higher education. Hovering over individual tracts reveals precise percentages, offering a detailed look at localized educational profiles. The map serves as a valuable tool for identifying communities with lower bachelor’s degree attainment, potentially informing targeted educational investment and outreach efforts."
   }
 ]

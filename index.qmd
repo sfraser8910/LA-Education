@@ -33,6 +33,7 @@ edu_data <- get_acs(
 
 ```{r}
 # Calculate percentage of population with a bachelor's degree
+edu_data <- st_transform(edu_data, crs = 4326)
 edu_data <- edu_data %>%
   mutate(bach_percent = 100 * bachE / totalE)
 
